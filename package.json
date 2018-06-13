@@ -1,0 +1,25 @@
+{
+  "name": "express-circleci-test",
+  "version": "1.0.0",
+  "description": "Circle CI integration",
+  "main": "index.js",
+  "scripts": {
+    "lint": "node_modules/.bin/eslint . && echo 'Lint executed successfully!'",
+    "test": "mocha"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "chai": "^4.1.2",
+    "chai-http": "^4.0.0",
+    "express": "^4.16.3"
+  },
+  "devDependencies": {
+    "eslint": "^4.19.1",
+    "eslint-config-airbnb": "^16.1.0",
+    "eslint-plugin-import": "^2.12.0",
+    "eslint-plugin-jsx-a11y": "^6.0.3",
+    "eslint-plugin-react": "^7.9.1",
+    "mocha": "^5.2.0"
+  }
+}
