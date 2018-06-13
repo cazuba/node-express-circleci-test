@@ -1,25 +1,25 @@
 version: 2
 jobs:
-  build:
-    working_directory: ~/repo
-    docker:
-      - image: 'circleci/node:8.10.0'
-    steps:
-      - run:
-          context: app-environment-variables
-      - checkout
-      - restore_cache:
-          key: 'v1-dependencies-{{ checksum "package.json" }}'
-      - run:
-          name: Install dependencies
-          command: npm install
-      - save_cache:
-          key: 'v1-dependencies-{{ checksum "package.json" }}'
-          paths:
-              - node_modules
-      - run:
-          name: Lint code
-          command: npm run lint
-      - run:
-          name: Test code
-          command: npm test
+  - run-tests:
+      context: app-environment-variables
+  - build:
+      working_directory: ~/repo
+      docker:
+        - image: 'circleci/node:8.10.0'
+      steps:
+        - checkout
+        - restore_cache:
+            key: 'v1-dependencies-{{ checksum "package.json" }}'
+        - run:
+            name: Install dependencies
+            command: npm install
+        - save_cache:
+            key: 'v1-dependencies-{{ checksum "package.json" }}'
+            paths:
+                - node_modules
+        - run:
+            name: Lint code
+            command: npm run lint
+        - run:
+            name: Test code
+            command: npm test
