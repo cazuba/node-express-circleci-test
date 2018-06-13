@@ -2,7 +2,12 @@
 const chai = require('chai');
 const chaiHttp = require('chai-http');
 
-const server = require('../server');
+let server = null;
+if (config.NODE_ENV === 'test') {
+  server = require('../app');
+} else {
+  server = require('../server');
+}
 
 const should = chai.should();
 chai.use(chaiHttp);
@@ -11,7 +16,7 @@ chai.use(chaiHttp);
  * Test Login
  */
 describe('GET /holamundo', () => {
-  it('should return hola mundo', done => {
+  it('should return hola mundo', (done) => {
     chai
       .request(server)
       .get('/holamundo')
