@@ -62,3 +62,7 @@ typings/
 
 # VS Code Settings
 .vscode/
+
+# Process environment variables
+process.json
+process.json.*
