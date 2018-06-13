@@ -26,6 +26,7 @@ describe('GET /holamundo', () => {
         res.should.have.status(200);
         res.body.should.be.a('object');
         res.body.should.have.property('success').eql(true);
+        console.log(res.body);
         done();
       });
   });
