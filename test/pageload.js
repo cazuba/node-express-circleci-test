@@ -27,6 +27,8 @@ describe('GET /holamundo', () => {
         res.body.should.be.a('object');
         res.body.should.have.property('success').eql(true);
         console.log(res.body);
+        console.log('PROCESS: ', process.env.NODE_ENV);
+        console.log('CONFIG: ', config);
         done();
       });
   });
