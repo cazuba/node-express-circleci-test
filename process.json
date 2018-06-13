@@ -1,0 +1,18 @@
+{
+  "apps": [
+    {
+      "name": "node-express-circleci-test",
+      "interpreter_args": "--expose-gc",
+      "cwd": "",
+      "script": "server.js",
+      "instances": 1,
+      "exec_mode": "fork",
+      "env": {
+        "NODE_ENV": "development",
+        "PORT": 3000,
+        "SUCCESS_MESSAGE": "Hello World!",
+        "SUCCESS_JSON": { "success": true }
+      }
+    }
+  ]
+}

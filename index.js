@@ -1,9 +1,11 @@
 const express = require('express');
 
+const config = require('./config.js');
+
 const app = express();
 
-app.get('/', (req, res) => res.send('Hello World!'));
+app.get('/', (req, res) => res.status(200).send(config.SUCCESS_MESSAGE));
 
-app.get('/holamundo', (req, res) => res.send({ success: true }));
+app.get('/holamundo', (req, res) => res.status(200).send(config.SUCCESS_JSON));
 
 module.exports = app;

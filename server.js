@@ -1,10 +1,9 @@
 // internal import
 const app = require('./index');
+const config = require('./config.js');
 
-const port = process.env.PORT || 8001;
-
-const server = app.listen(port, () => {
-  console.log(`Express server listening on port ${port}`);
+const server = app.listen(config.PORT, () => {
+  console.log(`Express server listening on port ${config.PORT}`);
 });
 
 module.exports = server;
