@@ -4,13 +4,7 @@ const chaiHttp = require('chai-http');
 
 const config = require('../config');
 
-let server = null;
-if (config.NODE_ENV === 'test') {
-  const app = require('../index');
-  server = app;
-} else {
-  server = require('../server');
-}
+let server = (server = require('../server'));
 
 const should = chai.should();
 chai.use(chaiHttp);
