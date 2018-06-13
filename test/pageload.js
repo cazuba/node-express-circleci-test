@@ -6,7 +6,7 @@ const config = require('../config');
 
 let server = null;
 if (config.NODE_ENV === 'test') {
-  server = require('../index');
+  server = require('./index');
 } else {
   server = require('../server');
 }
