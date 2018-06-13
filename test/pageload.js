@@ -11,14 +11,9 @@ chai.use(chaiHttp);
  */
 describe('GET /holamundo', () => {
   it('should return hola mundo', done => {
-    const creds = {
-      email: '',
-      password: ''
-    };
     chai
       .request(server)
-      .post('/holamundo')
-      .send(creds)
+      .get('/holamundo')
       .end((err, res) => {
         res.should.have.status(200);
         res.body.should.be.a('object');
