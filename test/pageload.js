@@ -2,6 +2,8 @@
 const chai = require('chai');
 const chaiHttp = require('chai-http');
 
+const config = require('../config');
+
 let server = null;
 if (config.NODE_ENV === 'test') {
   server = require('../app');
