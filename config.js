@@ -5,7 +5,8 @@ if (process.env.NODE_ENV !== 'test') {
 }
 
 const config = {
-  ...envVariables,
+  SUCCESS_MESSAGE: envVariables.SUCCESS_MESSAGE,
+  SUCCESS_JSON: envVariables.SUCCESS_JSON,
   __root: `${__dirname}/`,
   PORT: envVariables.PORT || 8001
 };
