@@ -2,6 +2,8 @@ let envVariables = process.env;
 if (process.env.NODE_ENV !== 'test') {
   const process = require('./process.json');
   envVariables = process.apps[0].env;
+} else {
+  envVariables.SUCCESS_JSON = JSON.parse(envVariables.SUCCESS_JSON);
 }
 
 const config = {
