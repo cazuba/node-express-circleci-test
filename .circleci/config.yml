@@ -6,6 +6,8 @@ jobs:
       - image: 'circleci/node:8.10.0'
     steps:
       - checkout
+      - restore_cache:
+          key: 'v2-dependencies-{{ checksum "project/package.json" }}'
       - run:
           name: Install dependencies
           command: cd project && npm install
@@ -13,41 +15,15 @@ jobs:
           key: 'v2-dependencies-{{ checksum "project/package.json" }}'
           paths:
               - node_modules
-  LintCode:
-    working_directory: ~/repo
-    docker:
-      - image: 'circleci/node:8.10.0'
-    steps:
-      - run:
-          name: Enter to project folder
-          command: cd project
-      - restore_cache:
-          key: 'v2-dependencies-{{ checksum "project/package.json" }}'
       - run:
           name: Lint code
           command: npm run lint
-  MochaTests:
-    working_directory: ~/repo
-    docker:
-      - image: 'circleci/node:8.10.0'
-    steps:
-      - run:
-          name: Enter to project folder
-          command: cd project
-      - restore_cache:
-          key: 'v2-dependencies-{{ checksum "project/package.json" }}'
       - run:
           name: Test code
           command: npm test
 workflows:
   version: 2
-  BuildApplication-LintCode-MochaTests:
+  BuildApplicationWorkflow
     jobs:
-      - BuildApplication
-      - LintCode:
-          requires: 
-            - BuildApplication
-      - MochaTests:
-          requires: 
-            - BuildApplication
+      - BuildApplication:
           context: app-environment-variables
