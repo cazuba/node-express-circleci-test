@@ -1,10 +1,14 @@
 version: 2
 jobs:
   BuildApplication:
+    working_directory: ~/repo/project
     docker:
       - image: 'circleci/node:8.10.0'
     steps:
       - checkout
+      - run:
+          name: Enter to project folder
+          command: cd project
       - restore_cache:
           key: 'v2-dependencies-{{ checksum "package.json" }}'
       - run:
@@ -15,6 +19,7 @@ jobs:
           paths:
               - node_modules
   LintCode:
+    working_directory: ~/repo/project
     docker:
       - image: 'circleci/node:8.10.0'
     steps:
@@ -25,6 +30,7 @@ jobs:
           name: Lint code
           command: npm run lint
   MochaTests:
+    working_directory: ~/repo/project
     docker:
       - image: 'circleci/node:8.10.0'
     steps:
