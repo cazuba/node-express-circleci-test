@@ -12,7 +12,7 @@ jobs:
       - save_cache:
           key: 'v2-dependencies-{{ checksum "project/package.json" }}'
           paths:
-              - node_modules
+              - project/node_modules
   LintCode:
     working_directory: ~/repo
     docker:
