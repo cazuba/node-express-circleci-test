@@ -15,9 +15,11 @@ jobs:
           key: 'v1-dependencies-{{ checksum "package.json" }}'
           paths:
               - node_modules
+  lint:
       - run:
           name: Lint code
           command: npm run lint
+  test:
       - run:
           name: Test code
           command: npm test
@@ -25,5 +27,7 @@ workflows:
   version: 2
   my-workflow:
     jobs:
-      - build:
+      - build
+      - lint
+      - test:
           context: app-environment-variables
