@@ -44,8 +44,8 @@ workflows:
       - BuildApplication
       - RunLint:
           requires: 
-            - build
+            - BuildApplication
       - MochaTests:
           requires: 
-            - build
+            - BuildApplication
           context: app-environment-variables
