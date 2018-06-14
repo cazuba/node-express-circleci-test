@@ -23,7 +23,7 @@ jobs:
           command: npm test
 workflows:
   version: 2
-  BuildApplicationWorkflow
+  BuildApplicationWorkflow:
     jobs:
       - BuildApplication:
           context: app-environment-variables
