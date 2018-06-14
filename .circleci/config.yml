@@ -10,7 +10,7 @@ jobs:
           name: Install dependencies
           command: cd project && npm install
       - save_cache:
-          key: 'v2-dependencies-{{ .Environment.CIRCLE_SHA1 }}'
+          key: 'v2-dependencies-{{ checksum "package.json" }}'
           paths:
               - node_modules
   LintCode:
@@ -20,7 +20,7 @@ jobs:
     steps:
       - checkout
       - restore_cache:
-          key: 'v2-dependencies-{{ .Environment.CIRCLE_SHA1 }}'
+          key: 'v2-dependencies-{{ checksum "package.json" }}'
       - run:
           name: Lint code
           command: cd project && npm run lint
@@ -31,7 +31,7 @@ jobs:
     steps:
       - checkout
       - restore_cache:
-          key: 'v2-dependencies-{{ .Environment.CIRCLE_SHA1 }}'
+          key: 'v2-dependencies-{{ checksum "package.json" }}'
       - run:
           name: Test code
           command: cd project && npm test
