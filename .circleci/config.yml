@@ -23,7 +23,7 @@ jobs:
           key: 'v2-dependencies-{{ checksum "project/package.json" }}'
       - run:
           name: Lint code
-          command: cd project && npm run lint
+          command: npm run lint
   MochaTests:
     working_directory: ~/repo
     docker:
@@ -34,7 +34,7 @@ jobs:
           key: 'v2-dependencies-{{ checksum "project/package.json" }}'
       - run:
           name: Test code
-          command: cd project && npm test
+          command: npm test
 workflows:
   version: 2
   BuildApplication-LintCode-MochaTests:
