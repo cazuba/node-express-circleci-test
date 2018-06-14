@@ -1,7 +1,7 @@
 version: 2
 jobs:
   BuildApplication:
-    working_directory: /home/circleci/project
+    working_directory: ~/repo
     docker:
       - image: 'circleci/node:8.10.0'
     steps:
@@ -14,7 +14,7 @@ jobs:
           paths:
               - node_modules
   LintCode:
-    working_directory: /home/circleci/project
+    working_directory: ~/repo
     docker:
       - image: 'circleci/node:8.10.0'
     steps:
@@ -25,7 +25,7 @@ jobs:
           name: Lint code
           command: cd project && npm run lint
   MochaTests:
-    working_directory: /home/circleci/project
+    working_directory: ~/repo
     docker:
       - image: 'circleci/node:8.10.0'
     steps:
