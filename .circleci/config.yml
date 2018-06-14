@@ -1,39 +1,34 @@
 version: 2
 jobs:
   BuildApplication:
-    working_directory: /home/circleci/project
     docker:
       - image: 'circleci/node:8.10.0'
     steps:
       - checkout
-      - restore_cache:
-          key: 'v2-dependencies-{{ checksum "package.json" }}'
       - run:
           name: Install dependencies
           command: npm install
       - save_cache:
-          key: 'v2-dependencies-{{ checksum "package.json" }}'
+          key: 'v2-dependencies-{{ .Environment.CIRCLE_SHA1 }}'
           paths:
               - node_modules
   LintCode:
-    working_directory: /home/circleci/project
     docker:
       - image: 'circleci/node:8.10.0'
     steps:
       - checkout
       - restore_cache:
-          key: 'v2-dependencies-{{ checksum "package.json" }}'
+          key: 'v2-dependencies-{{ .Environment.CIRCLE_SHA1 }}'
       - run:
           name: Lint code
           command: npm run lint
   MochaTests:
-    working_directory: /home/circleci/project
     docker:
       - image: 'circleci/node:8.10.0'
     steps:
       - checkout
       - restore_cache:
-          key: 'v2-dependencies-{{ checksum "package.json" }}'
+          key: 'v2-dependencies-{{ .Environment.CIRCLE_SHA1 }}'
       - run:
           name: Test code
           command: npm test
