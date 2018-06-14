@@ -16,10 +16,24 @@ jobs:
           paths:
               - node_modules
   lint:
+    working_directory: ~/repo
+    docker:
+      - image: 'circleci/node:8.10.0'
+    steps:
+      - checkout
+      - restore_cache:
+          key: 'v1-dependencies-{{ checksum "package.json" }}'
       - run:
           name: Lint code
           command: npm run lint
   test:
+    working_directory: ~/repo
+    docker:
+      - image: 'circleci/node:8.10.0'
+    steps:
+      - checkout
+      - restore_cache:
+          key: 'v1-dependencies-{{ checksum "package.json" }}'
       - run:
           name: Test code
           command: npm test
