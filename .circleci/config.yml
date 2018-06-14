@@ -1,6 +1,7 @@
 version: 2
 jobs:
   BuildApplication:
+    working_directory: node-express-circleci-test/project
     docker:
       - image: 'circleci/node:8.10.0'
     steps:
@@ -13,8 +14,9 @@ jobs:
       - save_cache:
           key: 'v2-dependencies-{{ checksum "package.json" }}'
           paths:
-              - ${CIRCLE_WORKING_DIRECTORY}/node_modules
+              - node_modules
   LintCode:
+    working_directory: node-express-circleci-test/project
     docker:
       - image: 'circleci/node:8.10.0'
     steps:
@@ -25,6 +27,7 @@ jobs:
           name: Lint code
           command: npm run lint
   MochaTests:
+    working_directory: node-express-circleci-test/project
     docker:
       - image: 'circleci/node:8.10.0'
     steps:
