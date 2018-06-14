@@ -23,3 +23,4 @@ describe('GET /holamundo', () => {
       });
   });
 });
+server.close();
