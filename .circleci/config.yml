@@ -1,7 +1,6 @@
 version: 2
 jobs:
   build:
-    context: app-environment-variables
     working_directory: ~/repo
     docker:
       - image: 'circleci/node:8.10.0'
@@ -22,3 +21,9 @@ jobs:
       - run:
           name: Test code
           command: npm test
+workflows:
+  version: 2
+  my-workflow:
+    jobs:
+      - build:
+          context: app-environment-variables
