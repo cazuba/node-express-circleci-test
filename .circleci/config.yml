@@ -39,9 +39,11 @@ jobs:
           command: npm test
 workflows:
   version: 2
-  my-workflow:
+  build-lint-test:
     jobs:
       - build
       - lint
+          requires: build
       - test:
+          requires: build
           context: app-environment-variables
