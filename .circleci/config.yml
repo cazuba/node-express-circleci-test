@@ -17,10 +17,10 @@ jobs:
               - node_modules
       - run:
           name: Lint code
-          command: npm run lint
+          command: cd project && npm run lint
       - run:
           name: Test code
-          command: npm test
+          command: cd project && npm test
 workflows:
   version: 2
   BuildApplicationWorkflow:
