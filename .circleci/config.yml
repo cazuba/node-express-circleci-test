@@ -49,3 +49,8 @@ workflows:
           requires: 
             - build
           context: app-environment-variables
+      - succeeded:
+          type: approval
+          requires:
+            - lint
+            - test
