@@ -9,6 +9,7 @@ module.exports = {
     'comma-dangle': 0,
     'import/no-unresolved': 0,
     'consistent-return': 0,
-    'global-require': 0
+    'global-require': 0,
+    'no-console': 0
   }
 };
