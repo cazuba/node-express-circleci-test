@@ -4,21 +4,17 @@ const chaiHttp = require('chai-http');
 
 const server = require('../server');
 
+const should = chai.should();
 chai.use(chaiHttp);
 
 /**
  * Test Login
  */
 describe('GET /holamundo', () => {
-  it('should return hola mundo', done => {
-    const creds = {
-      email: '',
-      password: ''
-    };
+  it('should return hola mundo', (done) => {
     chai
       .request(server)
-      .post('/holamundo')
-      .send(creds)
+      .get('/holamundo')
       .end((err, res) => {
         res.should.have.status(200);
         res.body.should.be.a('object');
@@ -27,3 +23,4 @@ describe('GET /holamundo', () => {
       });
   });
 });
+server.close();

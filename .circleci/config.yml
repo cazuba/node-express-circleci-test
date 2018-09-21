@@ -1,31 +1,29 @@
 version: 2
 jobs:
-    build:
-        working_directory: ~/repo
-        docker:
-            -
-                image: 'circleci/node:7.10'
-        steps:
-            - checkout
-            -
-                restore_cache:
-                    keys:
-                        - 'v1-dependencies-{{ checksum "package.json" }}'
-                        - v1-dependencies-
-            -
-                run:
-                    name: Install dependencies
-                    command: npm install
-            -
-                save_cache:
-                    paths:
-                        - node_modules
-                    key: 'v1-dependencies-{{ checksum "package.json" }}'
-            -
-                run:
-                    name: Lint code
-                    command: npm run lint
-            -
-                run:
-                    name: Test code
-                    command: npm test
+  BuildApplication:
+    working_directory: ~/repo
+    docker:
+      - image: 'circleci/node:8.10.0'
+    steps:
+      - checkout
+      - restore_cache:
+          key: 'v2-dependencies-{{ checksum "project/package.json" }}'
+      - run:
+          name: Install dependencies
+          command: cd project && npm install
+      - save_cache:
+          key: 'v2-dependencies-{{ checksum "project/package.json" }}'
+          paths:
+              - node_modules
+      - run:
+          name: Lint code
+          command: cd project && npm run lint
+      - run:
+          name: Test code
+          command: cd project && npm test
+workflows:
+  version: 2
+  BuildApplicationWorkflow:
+    jobs:
+      - BuildApplication:
+          context: app-environment-variables
